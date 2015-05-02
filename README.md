@@ -1,5 +1,5 @@
 # ImageViewer
-Very simple image viewer inspired by facebook.
+Very simple image viewer inspired by facebook and completely written in SWIFT.
 
 ## Installation
 
