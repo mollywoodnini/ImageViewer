@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C68A2CCC1AF64F68000E8A94 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C68A2CCB1AF64F68000E8A94 /* Images.xcassets */; };
 		C6A0AC0D1AF641D800B79957 /* ImageViewer.h in Headers */ = {isa = PBXBuildFile; fileRef = C6A0AC0C1AF641D800B79957 /* ImageViewer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C6A0AC131AF641D800B79957 /* ImageViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6A0AC071AF641D800B79957 /* ImageViewer.framework */; };
 		C6A0AC1A1AF641D800B79957 /* ImageViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A0AC191AF641D800B79957 /* ImageViewerTests.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C68A2CCB1AF64F68000E8A94 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C6A0AC071AF641D800B79957 /* ImageViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ImageViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6A0AC0B1AF641D800B79957 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C6A0AC0C1AF641D800B79957 /* ImageViewer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageViewer.h; sourceTree = "<group>"; };
@@ -76,9 +78,9 @@
 			isa = PBXGroup;
 			children = (
 				C6A0AC0C1AF641D800B79957 /* ImageViewer.h */,
-				C6A0AC0A1AF641D800B79957 /* Supporting Files */,
 				C6A0AC231AF6424400B79957 /* UIImageView+ImageViewer.swift */,
 				C6A0AC251AF6426600B79957 /* ImageViewer.swift */,
+				C6A0AC0A1AF641D800B79957 /* Supporting Files */,
 			);
 			path = ImageViewer;
 			sourceTree = "<group>";
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				C6A0AC0B1AF641D800B79957 /* Info.plist */,
+				C68A2CCB1AF64F68000E8A94 /* Images.xcassets */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C68A2CCC1AF64F68000E8A94 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +414,7 @@
 				C6A0AC1F1AF641D800B79957 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C6A0AC201AF641D800B79957 /* Build configuration list for PBXNativeTarget "ImageViewerTests" */ = {
 			isa = XCConfigurationList;
@@ -418,6 +423,7 @@
 				C6A0AC221AF641D800B79957 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
