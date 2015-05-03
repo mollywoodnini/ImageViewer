@@ -17,9 +17,7 @@ public extension UIImageView {
         addGestureRecognizer(gestureRecognizer)
     }
     
-    internal func didTap(recognizer: ImageViewerTapGestureRecognizer) {
-        println("didTap")
-        
+    internal func didTap(recognizer: ImageViewerTapGestureRecognizer) {        
         let imageViewer = ImageViewer(senderView: self, highQualityImageUrl: recognizer.highQualityImageUrl, backgroundColor: recognizer.backgroundColor)
         imageViewer.presentFromRootViewController()
     }
