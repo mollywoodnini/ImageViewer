@@ -10,6 +10,8 @@ Using [Carthage](https://github.com/Carthage/Carthage):
 ```
 github "mollywoodnini/ImageViewer"
 ```
+Carthage builds two frameworks (ImageViewer and Haneke) which you'll have to import to your project.
+
 ## Usage
 Just create an ImageView and prepare it for the ImageViewer via:
 ```swift
@@ -38,3 +40,4 @@ Released under the MIT license. See the LICENSE file for more info.
 ## Credits
 - <a href="https://github.com/Haneke/HanekeSwift">Thanks to Haneke for the awesome image cache!</a>
 - <a href="https://icons8.com/web-app/3058/Close">Thanks to icons8.com for the close image!</a>
+- <a href="https://github.com/michaelhenry/MHFacebookImageViewer">Thanks to Michael Henry, whose ImageViewer was a huge help for me to get this here done.</a>
