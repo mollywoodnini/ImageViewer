@@ -1,4 +1,7 @@
 # ImageViewer
+
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+
 Very simple image viewer inspired by facebook and completely written in SWIFT.
 
 ## Installation
