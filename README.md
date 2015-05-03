@@ -4,6 +4,13 @@
 
 The ImageViewer is a very simple image viewer for iOS, which behaviour is inspired by the facebook app and completely written in Swift.
 
+## Screenshots
+![Preview](https://cloud.githubusercontent.com/assets/5786065/7445805/72750532-f1c2-11e4-8944-b213bccbce73.gif
+) ![Preview](https://cloud.githubusercontent.com/assets/5786065/7445806/7277981a-f1c2-11e4-9e08-bdc488f8b6a3.gif
+)
+
+
+
 ## Installation
 Using [Carthage](https://github.com/Carthage/Carthage):
 
