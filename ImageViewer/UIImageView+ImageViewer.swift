@@ -9,8 +9,6 @@
 import Foundation
 import UIKit
 
-private var AssociatedImageViewerSourceObjectHandle: UInt8 = 0
-
 public extension UIImageView {
     
     public func setupForImageViewer(highQualityImageUrl: NSURL? = nil, backgroundColor: UIColor = UIColor.whiteColor()) {
@@ -20,6 +18,8 @@ public extension UIImageView {
     }
     
     internal func didTap(recognizer: ImageViewerTapGestureRecognizer) {
+        println("didTap")
+        
         let imageViewer = ImageViewer(senderView: self, highQualityImageUrl: recognizer.highQualityImageUrl, backgroundColor: recognizer.backgroundColor)
         imageViewer.presentFromRootViewController()
     }

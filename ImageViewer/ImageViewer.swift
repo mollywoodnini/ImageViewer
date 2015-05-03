@@ -75,7 +75,10 @@ class ImageViewer: UIViewController, UIGestureRecognizerDelegate, UIScrollViewDe
     
     func configureCloseButton() {
         closeButton.alpha = 0.0
-        closeButton.setImage(UIImage(named: "Close")!, forState: .Normal)
+        
+        let image = UIImage(named: "Close", inBundle: NSBundle(forClass: ImageViewer.self), compatibleWithTraitCollection: nil)
+        
+        closeButton.setImage(image, forState: .Normal)
         closeButton.setTranslatesAutoresizingMaskIntoConstraints(false)
         closeButton.addTarget(self, action: "closeButtonTapped:", forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(closeButton)
@@ -318,8 +321,9 @@ class ImageViewer: UIViewController, UIGestureRecognizerDelegate, UIScrollViewDe
             "closeButton": closeButton
         ]
         view.addConstraint(NSLayoutConstraint(item: closeButton, attribute: .CenterX, relatedBy: .Equal, toItem: closeButton.superview, attribute: .CenterX, multiplier: 1.0, constant: 0))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[closeButton]-40-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
-        
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[closeButton(==64)]-40-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[closeButton(==64)]", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
+
         super.updateViewConstraints()
     }
 }
