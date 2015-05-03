@@ -2,7 +2,7 @@
 //  ImageViewer.swift
 //  ImageViewer
 //
-//  Created by Tan Nghia La on 03.05.15.
+//  Created by Tan Nghia La on 30.04.15.
 //  Copyright (c) 2015 Tan Nghia La. All rights reserved.
 //
 
@@ -45,8 +45,8 @@ class ImageViewer: UIViewController, UIGestureRecognizerDelegate, UIScrollViewDe
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func loadView() {
+        super.loadView()
         
         configureView()
         configureMaskView()
@@ -101,7 +101,7 @@ class ImageViewer: UIViewController, UIGestureRecognizerDelegate, UIScrollViewDe
         imageView.contentMode = UIViewContentMode.ScaleAspectFit
         
         if let highQualityImageUrl = highQualityImageUrl {
-//            imageView.hnk_setImageFromURL(highQualityImageUrl, placeholder: senderView.image, format: nil, failure: nil, success: nil)
+            //            imageView.hnk_setImageFromURL(highQualityImageUrl, placeholder: senderView.image, format: nil, failure: nil, success: nil)
         } else {
             imageView.image = senderView.image
         }
@@ -113,8 +113,6 @@ class ImageViewer: UIViewController, UIGestureRecognizerDelegate, UIScrollViewDe
         addGestures()
         
         centerScrollViewContents()
-        
-        
     }
     
     // pragma mark - gestures
