@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//import Haneke
+import Haneke
 
 class ImageViewer: UIViewController, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     
@@ -104,7 +104,7 @@ class ImageViewer: UIViewController, UIGestureRecognizerDelegate, UIScrollViewDe
         imageView.contentMode = UIViewContentMode.ScaleAspectFit
         
         if let highQualityImageUrl = highQualityImageUrl {
-            //            imageView.hnk_setImageFromURL(highQualityImageUrl, placeholder: senderView.image, format: nil, failure: nil, success: nil)
+            imageView.hnk_setImageFromURL(highQualityImageUrl, placeholder: senderView.image, format: nil, failure: nil, success: nil)
         } else {
             imageView.image = senderView.image
         }

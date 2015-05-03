@@ -1,0 +1,10 @@
+framework module Haneke {
+  umbrella header "Haneke.h"
+
+  export *
+  module * { export * }
+}
+
+module Haneke.Swift {
+    header "Haneke-Swift.h"
+}
