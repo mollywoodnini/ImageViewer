@@ -30,5 +30,5 @@ imageView.setupForImageViewer(highQualityImageUrl: NSURL(string: "https://your.u
 Released under the MIT license. See the LICENSE file for more info.
 
 ## Credits
-Thanks to https://github.com/Haneke/HanekeSwift for the image cache!
-<a href="https://icons8.com/web-app/3058/Close">Close icon credits</a>
+- <a href="https://github.com/Haneke/HanekeSwift">Thanks to Haneke for awesome image cache!</a>
+- <a href="https://icons8.com/web-app/3058/Close">Thanks to icons8.com for the close image!</a>
