@@ -11,7 +11,7 @@ import UIKit
 
 private var AssociatedImageViewerSourceObjectHandle: UInt8 = 0
 
-extension UIImageView {
+public extension UIImageView {
     internal var imageViewer: ImageViewer {
         get {
             return objc_getAssociatedObject(self, &AssociatedImageViewerSourceObjectHandle) as! ImageViewer
@@ -21,13 +21,13 @@ extension UIImageView {
         }
     }
     
-    func setupForImageViewer(highQualityImageUrl: NSURL? = nil, backgroundColor: UIColor = UIColor.whiteColor()) {
+    public func setupForImageViewer(highQualityImageUrl: NSURL? = nil, backgroundColor: UIColor = UIColor.whiteColor()) {
         userInteractionEnabled = true
         let gestureRecognizer = ImageViewerTapGestureRecognizer(target: self, action: "didTap:", highQualityImageUrl: highQualityImageUrl, backgroundColor: backgroundColor)
         addGestureRecognizer(gestureRecognizer)
     }
     
-    func didTap(recognizer: ImageViewerTapGestureRecognizer) {
+    internal func didTap(recognizer: ImageViewerTapGestureRecognizer) {
         imageViewer = ImageViewer(senderView: self, highQualityImageUrl: recognizer.highQualityImageUrl, backgroundColor: recognizer.backgroundColor)
         imageViewer.presentFromRootViewController()
     }
