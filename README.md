@@ -2,7 +2,7 @@
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-The ImageViewer is a very simple image viewer for iOS, inspired by facebook and completely written in Swift.
+The ImageViewer is a very simple image viewer for iOS, which behaviour is inspired by the facebook app and completely written in Swift.
 
 ## Installation
 Using [Carthage](https://github.com/Carthage/Carthage):
