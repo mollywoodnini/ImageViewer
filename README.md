@@ -16,7 +16,7 @@ Using [Carthage](https://github.com/Carthage/Carthage):
 
 1. Create a cartfile with following content within your project directory: `github "mollywoodnini/ImageViewer"`
 2. run `carthage update`. Carthage builds two frameworks (ImageViewer and Haneke) which you'll have to import to your project.
-3. On your application targets’ “General” settings tab, in the “Linked Frameworks and Libraries” section, drag and drop each framework you want to use from the Carthage/Build folder on disk.
+3. On your application targets’ “General” settings tab, in the “Linked Frameworks and Libraries” section, drag and drop both frameworks from the Carthage/Build folder on disk.
 4. On your application targets’ “Build Phases” settings tab, click the “+” icon and choose “New Run Script Phase”. Create a Run Script with the following contents:
 ```
 /usr/local/bin/carthage copy-frameworks
@@ -24,7 +24,7 @@ Using [Carthage](https://github.com/Carthage/Carthage):
 and add the paths to the frameworks under “Input Files”:
 ```
 $(SRCROOT)/Carthage/Build/iOS/ImageViewer.framework
-$(SRCROOT)/Carthage/Build/iOS/HanekeSwift.framework
+$(SRCROOT)/Carthage/Build/iOS/Haneke.framework
 ```
 
 ## Usage
