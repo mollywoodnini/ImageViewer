@@ -237,7 +237,11 @@ class ImageViewer: UIViewController, UIGestureRecognizerDelegate, UIScrollViewDe
     //pragma mark - misc.
     func animateEntry() {
         UIView.animateWithDuration(0.8, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.6, options: UIViewAnimationOptions.BeginFromCurrentState|UIViewAnimationOptions.CurveEaseInOut, animations: {() -> Void in
-            self.imageView.frame = self.centerFrameFromImage(self.imageView.image!)
+            if let image = self.imageView.image {
+                self.imageView.frame = self.centerFrameFromImage(image)
+            } else {
+                fatalError("Image within UIImageView needed.")
+            }
             }, completion: nil)
         
         UIView.animateWithDuration(0.4, delay: 0.03, options: UIViewAnimationOptions.BeginFromCurrentState|UIViewAnimationOptions.CurveEaseInOut, animations: {() -> Void in
@@ -254,7 +258,11 @@ class ImageViewer: UIViewController, UIGestureRecognizerDelegate, UIScrollViewDe
     func rollbackViewController() {
         isAnimating = true
         UIView.animateWithDuration(0.8, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.6, options: UIViewAnimationOptions.BeginFromCurrentState|UIViewAnimationOptions.CurveEaseInOut, animations: {() in
-            self.imageView.frame = self.centerFrameFromImage(self.imageView.image!)
+            if let image = self.imageView.image {
+                self.imageView.frame = self.centerFrameFromImage(image)
+            } else {
+                fatalError("Image within UIImageView needed.")
+            }
             self.maskView.alpha = 1.0
             self.closeButton.alpha = 1.0
             }, completion: {(finished) in
