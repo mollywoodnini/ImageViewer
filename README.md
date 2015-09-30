@@ -2,7 +2,7 @@
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-The ImageViewer is a very simple image viewer for iOS, which behaviour is inspired by the facebook app and completely written in Swift.
+The ImageViewer is a very simple image viewer for iOS, which behaviour is inspired by the facebook app and completely written in Swift 2.0.
 
 ## Screenshots
 ![Preview](https://cloud.githubusercontent.com/assets/5786065/7445805/72750532-f1c2-11e4-8944-b213bccbce73.gif
@@ -46,7 +46,7 @@ To hide the status bar add the "View controller-based status bar appearance" key
 
 ## Requirements
 - iOS 8.0+
-- Xcode 6.3
+- Xcode 7.0+
 
 ## License
 
