@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C6805E101AF678B7005FB3EE /* Haneke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6805E0F1AF678B7005FB3EE /* Haneke.framework */; };
 		C68A2CCC1AF64F68000E8A94 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C68A2CCB1AF64F68000E8A94 /* Images.xcassets */; };
-		C6A0AC0D1AF641D800B79957 /* ImageViewer.h in Headers */ = {isa = PBXBuildFile; fileRef = C6A0AC0C1AF641D800B79957 /* ImageViewer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C6A0AC131AF641D800B79957 /* ImageViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6A0AC071AF641D800B79957 /* ImageViewer.framework */; };
 		C6A0AC1A1AF641D800B79957 /* ImageViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A0AC191AF641D800B79957 /* ImageViewerTests.swift */; };
 		C6A0AC241AF6424400B79957 /* UIImageView+ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A0AC231AF6424400B79957 /* UIImageView+ImageViewer.swift */; };
@@ -27,11 +25,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C6805E0F1AF678B7005FB3EE /* Haneke.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Haneke.framework; path = Carthage/Build/iOS/Haneke.framework; sourceTree = "<group>"; };
 		C68A2CCB1AF64F68000E8A94 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C6A0AC071AF641D800B79957 /* ImageViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ImageViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6A0AC0B1AF641D800B79957 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C6A0AC0C1AF641D800B79957 /* ImageViewer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageViewer.h; sourceTree = "<group>"; };
 		C6A0AC121AF641D800B79957 /* ImageViewerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageViewerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6A0AC181AF641D800B79957 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C6A0AC191AF641D800B79957 /* ImageViewerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerTests.swift; sourceTree = "<group>"; };
@@ -44,7 +40,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C6805E101AF678B7005FB3EE /* Haneke.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,7 +57,6 @@
 		C6A0ABFD1AF641D800B79957 = {
 			isa = PBXGroup;
 			children = (
-				C6805E0F1AF678B7005FB3EE /* Haneke.framework */,
 				C6A0AC091AF641D800B79957 /* ImageViewer */,
 				C6A0AC161AF641D800B79957 /* ImageViewerTests */,
 				C6A0AC081AF641D800B79957 /* Products */,
@@ -81,7 +75,6 @@
 		C6A0AC091AF641D800B79957 /* ImageViewer */ = {
 			isa = PBXGroup;
 			children = (
-				C6A0AC0C1AF641D800B79957 /* ImageViewer.h */,
 				C6A0AC231AF6424400B79957 /* UIImageView+ImageViewer.swift */,
 				C6A0AC251AF6426600B79957 /* ImageViewer.swift */,
 				C6A0AC0A1AF641D800B79957 /* Supporting Files */,
@@ -122,7 +115,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C6A0AC0D1AF641D800B79957 /* ImageViewer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,7 +220,6 @@
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Haneke.framework",
 			);
 			outputPaths = (
 			);
@@ -305,7 +296,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -347,7 +338,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
