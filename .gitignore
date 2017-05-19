@@ -27,3 +27,5 @@ Carthage/Build/iOS/ImageViewer.framework/Modules/ImageViewer.swiftmodule/i386.sw
 Carthage/Build/iOS/ImageViewer.framework/Modules/ImageViewer.swiftmodule/i386.swiftmodule
 Carthage/Build/iOS/ImageViewer.framework/Modules/ImageViewer.swiftmodule/x86_64.swiftdoc
 Carthage/Build/iOS/ImageViewer.framework/Modules/ImageViewer.swiftmodule/x86_64.swiftmodule
+.DS_Store
+**/.DS_Store

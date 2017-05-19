@@ -10,30 +10,30 @@ import UIKit
 
 final class ImageViewer: UIViewController {
     // MARK: - Properties
-    private let kMinMaskViewAlpha: CGFloat = 0.3
-    private let kMaxImageScale: CGFloat = 2.5
-    private let kMinImageScale: CGFloat = 1.0
+    fileprivate let kMinMaskViewAlpha: CGFloat = 0.3
+    fileprivate let kMaxImageScale: CGFloat = 2.5
+    fileprivate let kMinImageScale: CGFloat = 1.0
     
-    private let senderView: UIImageView
-    private var originalFrameRelativeToScreen: CGRect!
-    private var rootViewController: UIViewController!
-    private let imageView = UIImageView()
-    private var panGesture: UIPanGestureRecognizer!
-    private var panOrigin: CGPoint!
+    fileprivate let senderView: UIImageView
+    fileprivate var originalFrameRelativeToScreen: CGRect!
+    fileprivate var rootViewController: UIViewController!
+    fileprivate let imageView = UIImageView()
+    fileprivate var panGesture: UIPanGestureRecognizer!
+    fileprivate var panOrigin: CGPoint!
     
-    private var isAnimating = false
-    private var isLoaded = false
+    fileprivate var isAnimating = false
+    fileprivate var isLoaded = false
     
-    private var closeButton = UIButton()
-    private let windowBounds = UIScreen.mainScreen().bounds
-    private let scrollView = UIScrollView()
-    private let maskView = UIView()
+    fileprivate var closeButton = UIButton()
+    fileprivate let windowBounds = UIScreen.main.bounds
+    fileprivate let scrollView = UIScrollView()
+    fileprivate let maskView = UIView()
     
     // MARK: - Lifecycle methods
     init(senderView: UIImageView, backgroundColor: UIColor) {
         self.senderView = senderView
         
-        rootViewController = UIApplication.sharedApplication().keyWindow!.rootViewController!
+        rootViewController = UIApplication.shared.keyWindow!.rootViewController!
         maskView.backgroundColor = backgroundColor
         
         super.init(nibName: nil, bundle: nil)
@@ -55,7 +55,7 @@ final class ImageViewer: UIViewController {
     }
     
     // MARK: - View configuration
-    private func configureScrollView() {
+    fileprivate func configureScrollView() {
         scrollView.frame = windowBounds
         scrollView.delegate = self
         scrollView.minimumZoomScale = kMinImageScale
@@ -65,42 +65,42 @@ final class ImageViewer: UIViewController {
         view.addSubview(scrollView)
     }
     
-    private func configureMaskView() {
+    fileprivate func configureMaskView() {
         maskView.frame = windowBounds
         maskView.alpha = 0.0
         
-        view.insertSubview(maskView, atIndex: 0)
+        view.insertSubview(maskView, at: 0)
     }
     
-    private func configureCloseButton() {
+    fileprivate func configureCloseButton() {
         closeButton.alpha = 0.0
         
-        let image = UIImage(named: "Close", inBundle: NSBundle(forClass: ImageViewer.self), compatibleWithTraitCollection: nil)
+        let image = UIImage(named: "Close", in: Bundle(for: ImageViewer.self), compatibleWith: nil)
         
-        closeButton.setImage(image, forState: .Normal)
+        closeButton.setImage(image, for: UIControlState())
         closeButton.translatesAutoresizingMaskIntoConstraints = false
-        closeButton.addTarget(self, action: "closeButtonTapped:", forControlEvents: UIControlEvents.TouchUpInside)
+        closeButton.addTarget(self, action: #selector(ImageViewer.closeButtonTapped(_:)), for: UIControlEvents.touchUpInside)
         view.addSubview(closeButton)
         
         view.setNeedsUpdateConstraints()
     }
     
-    private func configureView() {
-        var originalFrame = senderView.convertRect(windowBounds, toView: nil)
+    fileprivate func configureView() {
+        var originalFrame = senderView.convert(windowBounds, to: nil)
         originalFrame.origin = CGPoint(x: originalFrame.origin.x, y: originalFrame.origin.y)
         originalFrame.size = senderView.frame.size
         
         originalFrameRelativeToScreen = originalFrame
         
-        UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.Slide)
+        UIApplication.shared.setStatusBarHidden(true, with: UIStatusBarAnimation.slide)
     }
     
-    private func configureImageView() {
+    fileprivate func configureImageView() {
         senderView.alpha = 0.0
         
         imageView.frame = originalFrameRelativeToScreen
-        imageView.userInteractionEnabled = true
-        imageView.contentMode = UIViewContentMode.ScaleAspectFit
+        imageView.isUserInteractionEnabled = true
+        imageView.contentMode = UIViewContentMode.scaleAspectFit
         
         imageView.image = senderView.image
         
@@ -113,44 +113,44 @@ final class ImageViewer: UIViewController {
         centerScrollViewContents()
     }
     
-    private func configureConstraints() {
+    fileprivate func configureConstraints() {
         var constraints: [NSLayoutConstraint] = []
         
         let views: [String: UIView] = [
             "closeButton": closeButton
         ]
         
-        constraints.append(NSLayoutConstraint(item: closeButton, attribute: .CenterX, relatedBy: .Equal, toItem: closeButton.superview, attribute: .CenterX, multiplier: 1.0, constant: 0))
-        constraints.appendContentsOf(NSLayoutConstraint.constraintsWithVisualFormat("V:[closeButton(==64)]-40-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-        constraints.appendContentsOf(NSLayoutConstraint.constraintsWithVisualFormat("H:[closeButton(==64)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        constraints.append(NSLayoutConstraint(item: closeButton, attribute: .centerX, relatedBy: .equal, toItem: closeButton.superview, attribute: .centerX, multiplier: 1.0, constant: 0))
+        constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:[closeButton(==64)]-40-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[closeButton(==64)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         
-        NSLayoutConstraint.activateConstraints(constraints)
+        NSLayoutConstraint.activate(constraints)
     }
     
     // MARK: - Gestures
-    private func addPanGestureToView() {
-        panGesture = UIPanGestureRecognizer(target: self, action: "gestureRecognizerDidPan:")
+    fileprivate func addPanGestureToView() {
+        panGesture = UIPanGestureRecognizer(target: self, action: #selector(ImageViewer.gestureRecognizerDidPan(_:)))
         panGesture.cancelsTouchesInView = false
         panGesture.delegate = self
         
         imageView.addGestureRecognizer(panGesture)
     }
     
-    private func addGestures() {
-        let singleTapRecognizer = UITapGestureRecognizer(target: self, action: "didSingleTap:")
+    fileprivate func addGestures() {
+        let singleTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(ImageViewer.didSingleTap(_:)))
         singleTapRecognizer.numberOfTapsRequired = 1
         singleTapRecognizer.numberOfTouchesRequired = 1
         scrollView.addGestureRecognizer(singleTapRecognizer)
         
-        let doubleTapRecognizer = UITapGestureRecognizer(target: self, action: "didDoubleTap:")
+        let doubleTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(ImageViewer.didDoubleTap(_:)))
         doubleTapRecognizer.numberOfTapsRequired = 2
         doubleTapRecognizer.numberOfTouchesRequired = 1
         scrollView.addGestureRecognizer(doubleTapRecognizer)
         
-        singleTapRecognizer.requireGestureRecognizerToFail(doubleTapRecognizer)
+        singleTapRecognizer.require(toFail: doubleTapRecognizer)
     }
     
-    private func zoomInZoomOut(point: CGPoint) {
+    fileprivate func zoomInZoomOut(_ point: CGPoint) {
         let newZoomScale = scrollView.zoomScale > (scrollView.maximumZoomScale / 2) ? scrollView.minimumZoomScale : scrollView.maximumZoomScale
         
         let scrollViewSize = scrollView.bounds.size
@@ -161,38 +161,38 @@ final class ImageViewer: UIViewController {
         
         let rectToZoomTo = CGRect(x: x, y: y, width: w, height: h)
         
-        scrollView.zoomToRect(rectToZoomTo, animated: true)
+        scrollView.zoom(to: rectToZoomTo, animated: true)
     }
     
     // MARK: - Animation
-    private func animateEntry() {
+    fileprivate func animateEntry() {
         guard let image = imageView.image else {
             fatalError("no image provided")
         }
         
-        UIView.animateWithDuration(0.8, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.6, options: [UIViewAnimationOptions.BeginFromCurrentState, UIViewAnimationOptions.CurveEaseInOut], animations: {() -> Void in
+        UIView.animate(withDuration: 0.8, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.6, options: UIViewAnimationOptions.beginFromCurrentState, animations: {() -> Void in
             self.imageView.frame = self.centerFrameFromImage(image)
         }, completion: nil)
         
-        UIView.animateWithDuration(0.4, delay: 0.03, options: [UIViewAnimationOptions.BeginFromCurrentState, UIViewAnimationOptions.CurveEaseInOut], animations: {() -> Void in
+        UIView.animate(withDuration: 0.4, delay: 0.03, options: UIViewAnimationOptions.beginFromCurrentState, animations: {() -> Void in
             self.closeButton.alpha = 1.0
             self.maskView.alpha = 1.0
         }, completion: nil)
         
-        UIView.animateWithDuration(0.4, delay: 0.1, options: [UIViewAnimationOptions.BeginFromCurrentState, UIViewAnimationOptions.CurveEaseInOut], animations: {() -> Void in
-            self.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1)
-            self.rootViewController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.95, 0.95)
+        UIView.animate(withDuration: 0.4, delay: 0.1, options: UIViewAnimationOptions.beginFromCurrentState, animations: {() -> Void in
+            self.view.transform = CGAffineTransform.identity.scaledBy(x: 1.1, y: 1.1)
+            self.rootViewController.view.transform = CGAffineTransform.identity.scaledBy(x: 0.95, y: 0.95)
         }, completion: nil)
     }
     
-    private func centerFrameFromImage(image: UIImage) -> CGRect {
+    fileprivate func centerFrameFromImage(_ image: UIImage) -> CGRect {
         var newImageSize = imageResizeBaseOnWidth(windowBounds.size.width, oldWidth: image.size.width, oldHeight: image.size.height)
         newImageSize.height = min(windowBounds.size.height, newImageSize.height)
         
         return CGRect(x: 0, y: windowBounds.size.height / 2 - newImageSize.height / 2, width: newImageSize.width, height: newImageSize.height)
     }
     
-    private func imageResizeBaseOnWidth(newWidth: CGFloat, oldWidth: CGFloat, oldHeight: CGFloat) -> CGSize {
+    fileprivate func imageResizeBaseOnWidth(_ newWidth: CGFloat, oldWidth: CGFloat, oldHeight: CGFloat) -> CGSize {
         let scaleFactor = newWidth / oldWidth
         let newHeight = oldHeight * scaleFactor
 
@@ -200,7 +200,7 @@ final class ImageViewer: UIViewController {
     }
     
     // MARK: - Actions
-    func gestureRecognizerDidPan(recognizer: UIPanGestureRecognizer) {
+    func gestureRecognizerDidPan(_ recognizer: UIPanGestureRecognizer) {
         if scrollView.zoomScale != 1.0 || isAnimating {
             return
         }
@@ -209,7 +209,7 @@ final class ImageViewer: UIViewController {
         
         scrollView.bounces = false
         let windowSize = maskView.bounds.size
-        let currentPoint = panGesture.translationInView(scrollView)
+        let currentPoint = panGesture.translation(in: scrollView)
         let y = currentPoint.y + panOrigin.y
         
         imageView.frame.origin = CGPoint(x: currentPoint.x + panOrigin.x, y: y)
@@ -218,22 +218,22 @@ final class ImageViewer: UIViewController {
         maskView.alpha = max(1 - yDiff / (windowSize.height / 0.95), kMinMaskViewAlpha)
         closeButton.alpha = max(1 - yDiff / (windowSize.height / 0.95), kMinMaskViewAlpha) / 2
         
-        if (panGesture.state == UIGestureRecognizerState.Ended || panGesture.state == UIGestureRecognizerState.Cancelled)
+        if (panGesture.state == UIGestureRecognizerState.ended || panGesture.state == UIGestureRecognizerState.cancelled)
             && scrollView.zoomScale == 1.0 {
             maskView.alpha < 0.85 ? dismissViewController() : rollbackViewController()
         }
     }
     
-    func didSingleTap(recognizer: UITapGestureRecognizer) {
+    func didSingleTap(_ recognizer: UITapGestureRecognizer) {
         scrollView.zoomScale == 1.0 ? dismissViewController() : scrollView.setZoomScale(1.0, animated: true)
     }
     
-    func didDoubleTap(recognizer: UITapGestureRecognizer) {
-        let pointInView = recognizer.locationInView(imageView)
+    func didDoubleTap(_ recognizer: UITapGestureRecognizer) {
+        let pointInView = recognizer.location(in: imageView)
         zoomInZoomOut(pointInView)
     }
     
-    func closeButtonTapped(sender: UIButton) {
+    func closeButtonTapped(_ sender: UIButton) {
         if scrollView.zoomScale != 1.0 {
             scrollView.setZoomScale(1.0, animated: true)
         }
@@ -241,7 +241,7 @@ final class ImageViewer: UIViewController {
     }
     
     // MARK: - Misc.
-    private func centerScrollViewContents() {
+    fileprivate func centerScrollViewContents() {
         let boundsSize = rootViewController.view.bounds.size
         var contentsFrame = imageView.frame
         
@@ -260,13 +260,13 @@ final class ImageViewer: UIViewController {
         imageView.frame = contentsFrame
     }
     
-    private func rollbackViewController() {
+    fileprivate func rollbackViewController() {
         guard let image = imageView.image else {
             fatalError("no image provided")
         }
         
         isAnimating = true
-        UIView.animateWithDuration(0.8, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.6, options: [UIViewAnimationOptions.BeginFromCurrentState, UIViewAnimationOptions.CurveEaseInOut], animations: {() in
+        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.6, options: UIViewAnimationOptions.beginFromCurrentState, animations: {() in
             self.imageView.frame = self.centerFrameFromImage(image)
             self.maskView.alpha = 1.0
             self.closeButton.alpha = 1.0
@@ -275,23 +275,23 @@ final class ImageViewer: UIViewController {
         })
     }
     
-    private func dismissViewController() {
+    fileprivate func dismissViewController() {
         isAnimating = true
-        dispatch_async(dispatch_get_main_queue(), {
+        DispatchQueue.main.async(execute: {
             self.imageView.clipsToBounds = true
             
-            UIView.animateWithDuration(0.2, animations: {() in
+            UIView.animate(withDuration: 0.2, animations: {() in
                 self.closeButton.alpha = 0.0
             })
             
-            UIView.animateWithDuration(0.8, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.6, options: [UIViewAnimationOptions.BeginFromCurrentState, UIViewAnimationOptions.CurveEaseInOut], animations: {() in
+            UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.6, options: UIViewAnimationOptions.beginFromCurrentState, animations: {() in
                 self.imageView.frame = self.originalFrameRelativeToScreen
-                self.rootViewController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0)
-                self.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0)
+                self.rootViewController.view.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: 1.0)
+                self.view.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: 1.0)
                 self.maskView.alpha = 0.0
-                UIApplication.sharedApplication().setStatusBarHidden(false, withAnimation: UIStatusBarAnimation.None)
+                UIApplication.shared.setStatusBarHidden(false, with: UIStatusBarAnimation.none)
                 }, completion: {(finished) in
-                    self.willMoveToParentViewController(nil)
+                    self.willMove(toParentViewController: nil)
                     self.view.removeFromSuperview()
                     self.removeFromParentViewController()
                     self.senderView.alpha = 1.0
@@ -301,34 +301,34 @@ final class ImageViewer: UIViewController {
     }
     
     func presentFromRootViewController() {
-        willMoveToParentViewController(rootViewController)
+        willMove(toParentViewController: rootViewController)
         rootViewController.view.addSubview(view)
         rootViewController.addChildViewController(self)
-        didMoveToParentViewController(rootViewController)
+        didMove(toParentViewController: rootViewController)
     }
 }
 
 // MARK: - GestureRecognizer delegate
 extension ImageViewer: UIGestureRecognizerDelegate {
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         panOrigin = imageView.frame.origin
-        gestureRecognizer.enabled = true
+        gestureRecognizer.isEnabled = true
         return !isAnimating
     }
 }
 
 // MARK: - ScrollView delegate
 extension ImageViewer: UIScrollViewDelegate {
-    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return imageView
     }
     
-    func scrollViewDidZoom(scrollView: UIScrollView) {
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
         isAnimating = true
         centerScrollViewContents()
     }
     
-    func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat) {
+    func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
         isAnimating = false
     }
 }
